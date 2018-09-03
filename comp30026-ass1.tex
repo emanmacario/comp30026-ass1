@@ -1,0 +1,205 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage{color, colortbl}
+\usepackage{amssymb}
+\pagestyle{empty}
+\definecolor{Gray}{gray}{0.9}
+\textwidth      165mm
+\textheight     240mm
+\topmargin      -18mm
+\oddsidemargin  -2mm
+\evensidemargin 2mm
+\newcommand{\impl}{\mathbin{\Rightarrow}}
+\newcommand{\biim}{\mathbin{\Leftrightarrow}}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\author{Emmanuel Macario - 831659}
+\title{COMP30026 Models of Computation Assignment 1}
+\date{September, 2018}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Challenge 1}
+\begin{enumerate}
+    \item $R$
+    \item $P \biim Q$
+    \item $P \impl Q$
+    \item $((R \impl Q) \impl P) \impl (R \impl P)$
+\end{enumerate}
+
+
+\subsection*{Challenge 2}
+
+Firstly, let us define both inhabitant's statements in propositional logic.
+Inhabitant $P$'s statements are equivalent to $\neg Q$ and $Q'$, respectively. 
+Inhabitant $Q$'s statements are equivalent to $P$ and $\neg P'$, respectively.
+
+\bigskip
+\noindent
+We are given information that the statements given by the inhabitants $P$ and $Q$ 
+respectively must be either true or false, but \emph{cannot} be a mixture of both. 
+In other words, if an inhabitant lies, then every statement they say is guaranteed to 
+be a false statement.
+
+\bigskip
+\noindent
+This means that if inhabitant $P$ is telling the truth, then $\neg Q \land Q'$ is true, 
+otherwise $Q \land \neg Q'$ must be true. Similarly, if inhabitant $Q$ is telling the truth,
+then $P \land \neg P'$ must be true, otherwise $\neg P \land P'$ must be true.
+
+
+\bigskip
+\noindent
+Let $A$ mean $P$ \emph{is telling the truth}, and $B$ mean $Q$ is \emph{telling
+the truth}. We can surmise when $P$ and $Q$ are lying or telling the truth via truth tables.
+
+\bigskip
+\begin{minipage}{0.5\textwidth}
+\begin{center}
+$\begin{array}{|cc|c|}
+   \hline
+   P & P' & A
+\\ \hline
+   0 & 0 & 1
+\\ 0 & 1 & 0
+\\ 1 & 0 & 0
+\\ 1 & 1 & 1
+\\ \hline
+\end{array}$
+\end{center}
+\end{minipage}
+\begin{minipage}{0.35\textwidth}
+\begin{center}
+$\begin{array}{|cc|c|}
+   \hline
+   Q & Q' & B
+\\ \hline
+   0 & 0 & 1
+\\ 0 & 1 & 0
+\\ 1 & 0 & 0
+\\ 1 & 1 & 1
+\\ \hline
+\end{array}$
+\end{center}
+\end{minipage}
+
+\bigskip
+\noindent
+It can be seen that $P$ is truthful when $P \biim P'$ is true, and lies when $P 
+\oplus P'$ is true. The same notions hold for inhabitant $Q$, with respect to 
+literals $Q$ and $Q'$.
+
+\bigskip
+\noindent
+Now, we can extract the maximal amount of information provided by the two 
+inhabitants, in the form of propositional formulas (1) and (2).
+
+\bigskip
+\begin{equation}
+((P \biim P') \land (\neg Q \land Q')) \oplus ((P \oplus P') \land (Q \land \neg Q'))
+\end{equation}
+\begin{equation}
+((Q \biim Q') \land (P \land \neg P')) \oplus ((Q \oplus Q') \land (\neg P \land P'))
+\end{equation}
+
+\bigskip
+\noindent
+Now, using a truth table, we can determine for each of $P$ and $Q$ whether they 
+are a knight or a knave, and whether they are healthy or sick.
+
+\bigskip
+\begin{center}
+\resizebox{0.95\textwidth}{!}{$\begin{array}{|cccc|c|c|}
+   \hline
+   P & P' & Q & Q' & ((P \biim P') \land (\neg Q \land Q')) \oplus ((P \oplus P') \land (Q \land \neg Q')) & 
+   ((Q \biim Q') \land (P \land \neg P')) \oplus ((Q \oplus Q') \land (\neg P \land P'))
+\\ \hline
+   0 & 0 & 0 & 0 & 0 & 0 
+\\ 0 & 0 & 0 & 1 & 1 & 0
+\\ 0 & 0 & 1 & 0 & 0 & 0
+\\ 0 & 0 & 1 & 1 & 0 & 0 
+\\ 0 & 1 & 0 & 0 & 0 & 0 
+\\ 0 & 1 & 0 & 1 & 0 & 1 
+\\ \rowcolor{Gray}
+   0 & 1 & 1 & 0 & 1 & 1 
+\\ 0 & 1 & 1 & 1 & 0 & 0
+\\ 1 & 0 & 0 & 0 & 0 & 1 
+\\ 1 & 0 & 0 & 1 & 0 & 0 
+\\ 1 & 0 & 1 & 0 & 1 & 0 
+\\ 1 & 0 & 1 & 1 & 0 & 1 
+\\ 1 & 1 & 0 & 0 & 0 & 0 
+\\ 1 & 1 & 0 & 1 & 1 & 0 
+\\ 1 & 1 & 1 & 0 & 0 & 0 
+\\ 1 & 1 & 1 & 1 & 0 & 0
+\\ \hline
+\end{array}$}
+\end{center}
+
+\bigskip
+\noindent
+We know that both formulas must be true. Therefore,
+there is only \emph{one} possible scenario. That is, $P$
+is a \emph{healthy knave} and $Q$ is a \emph{sick knight}.
+
+% CHALLENGE 3
+\subsection*{Challenge 3}
+\begin{enumerate}
+  \item
+The two formulas are not equivalent. For example, consider the
+interpretation $I$ with domain $D$ = \{0,1\} and $P(0)$. Additionally, 
+let $Q$ always be \emph{false}.
+
+\bigskip
+\noindent
+For this interpretation, it can be seen that $I \vDash \forall x
+(P(x)) \impl Q$, but $I \nvDash \forall x(P(x) \impl Q)$.
+Hence, $\forall x(P(x)) \impl Q \nvDash \forall x(P(x) \impl Q)$.
+
+\bigskip
+\noindent
+Therefore, $\forall x (P(x)) \impl Q$ is \emph{not} equivalent to
+$\forall x(P(x) \impl Q)$.
+\end{enumerate}
+
+
+% CHALLENGE 4
+\subsection*{Challenge 4}
+\begin{enumerate}
+  \item $\forall x \forall y(M(x,y) \impl F(x))$
+  \item $\forall x \forall y((U(x) \land M(y,x)) \impl U(y))$
+  \item $\forall x((F(x) \land U(x) \land B(x)) \impl D(x))$
+  \item $\forall x \forall y((U(x) \land M(x,y) \land D(x)) \impl D(y))$
+  \item $\forall x((S(x) \land U(x)) \impl B(x))$
+\end{enumerate}
+
+\bigskip
+\noindent
+The \emph{Horn clauses} generated are as follows:
+\begin{enumerate}
+  \item $\{\neg M(x,y), F(x)\}$
+  \item $\{\neg U(x), \neg M(y,x), U(y)\}$
+  \item $\{\neg F(x), \neg U(x), \neg B(x), D(x)\}$
+  \item $\{\neg U(x), \neg M(x), \neg D(x), D(y)\}$
+  \item $\{\neg S(x), \neg U(x), B(x)\}$
+\end{enumerate}
+
+% CHALLENGE 5
+\subsection*{Challenge 5}
+
+\begin{enumerate}
+  \item (a1) $\forall x \forall y(N(x,y) \impl N(y,x))\\\\$
+        (a2) $\forall x \forall y \exists u((M(u,x) \land \neg M(u,y)) \impl N(x,y))\\\\$
+        (a3) $\forall x(\neg \exists u(M(u,x)) \impl E(x))\\\\$
+        (a4) $\forall x \forall y \forall u((D(x,y) \land M(u,x)) \impl \neg M(u,y))$
+\end{enumerate}
+
+
+% CHALLENGE 6
+\subsection*{Challenge 6}
+See Grok.
+
+
+\end{document}

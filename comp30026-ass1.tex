@@ -24,10 +24,74 @@
 
 \subsection*{Challenge 1}
 \begin{enumerate}
-    \item $R$
-    \item $P \biim Q$
-    \item $P \impl Q$
-    \item $((R \impl Q) \impl P) \impl (R \impl P)$
+\item 
+$\begin{array}{|ccc|c|c|}
+   \hline
+   P & Q & R & ((\neg P \land Q) \impl \neg R) \impl R & R
+\\ \hline
+    0 & 0 & 0 & 0 & 0
+\\ 0 & 0 & 1 & 1 & 1
+\\ 0 & 1 & 0 & 0 & 0
+\\ 0 & 1 & 1 & 1 & 1
+\\ 1 & 0 & 0 & 0 & 0
+\\ 1 & 0 & 1 & 1 & 1
+\\ 1 & 1 & 0 & 0 & 0
+\\ 1 & 1 & 1 & 1 & 1
+\\ \hline
+\end{array}$
+$\therefore ((\neg P \land Q) \impl \neg R) \impl R \equiv R$
+\bigskip
+
+\item 
+$\begin{array}{|ccc|c|c|}
+   \hline
+   P & Q & R & (P \impl (Q \lor R)) \land (P \biim Q) & P \biim Q
+\\ \hline
+    0 & 0 & 0 & 1 & 1
+\\ 0 & 0 & 1 & 1 & 1
+\\ 0 & 1 & 0 & 0 & 0
+\\ 0 & 1 & 1 & 0 & 0
+\\ 1 & 0 & 0 & 0 & 0
+\\ 1 & 0 & 1 & 0 & 0
+\\ 1 & 1 & 0 & 1 & 1
+\\ 1 & 1 & 1 & 1 & 1
+\\ \hline
+\end{array}$
+$\therefore (P \impl (Q \lor R)) \land (P \biim Q) \equiv P \biim Q$
+\bigskip
+
+\item
+$\begin{array}{|cc|c|c|}
+   \hline
+   P & Q & P \impl (P \biim Q) & P \impl Q
+\\ \hline
+    0 & 0 & 1 & 1
+\\ 0 & 1 & 1 & 1
+\\ 1 & 0 & 0 & 0
+\\ 1 & 1 & 1 & 1
+\\ \hline
+\end{array}$
+$\therefore P \impl (P \biim Q) \equiv P \impl Q$
+\bigskip
+
+\item
+$\begin{array}{|ccc|c|c|}
+   \hline
+   P & Q & R & P \lor (R \impl Q) & (Q \impl P) \impl (R \impl P)
+\\ \hline
+    0 & 0 & 0 & 1 & 1
+\\ 0 & 0 & 1 & 0 & 0
+\\ 0 & 1 & 0 & 1 & 1
+\\ 0 & 1 & 1 & 1 & 1
+\\ 1 & 0 & 0 & 1 & 1
+\\ 1 & 0 & 1 & 1 & 1
+\\ 1 & 1 & 0 & 1 & 1
+\\ 1 & 1 & 1 & 1 & 1
+\\ \hline
+\end{array}$
+$\therefore P \lor (R \impl Q) \equiv (Q \impl P) \impl (R \impl P)$
+\bigskip
+
 \end{enumerate}
 
 
@@ -107,7 +171,7 @@ inhabitants, in the form of propositional formulas (1) and (2).
 
 \bigskip
 \noindent
-Now, using a truth table, we can determine for each of $P$ and $Q$ whether they 
+Using a truth table, we can determine for each of $P$ and $Q$ whether they 
 are a knight or a knave, and whether they are healthy or sick.
 
 \bigskip

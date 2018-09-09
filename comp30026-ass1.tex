@@ -158,10 +158,11 @@ literals $Q$ and $Q'$.
 
 \bigskip
 \noindent
-Now, we can extract the maximal amount of information provided by the two 
-inhabitants, in the form of propositional formulas (1) and (2).
+Using the formulas generated above, we can now extract the maximal amount of information 
+provided by the two  inhabitants, in the form of propositional formulas (1) and (2), both of which
+must be true.
 
-\bigskip
+\medskip
 \begin{equation}
 ((P \biim P') \land (\neg Q \land Q')) \oplus ((P \oplus P') \land (Q \land \neg Q'))
 \end{equation}
@@ -212,8 +213,7 @@ is a \emph{healthy knave} and $Q$ is a \emph{sick knight}.
 \subsection*{Challenge 3}
 \begin{enumerate}
   \item
-The two formulas are not equivalent. For example, consider the
-interpretation $I$ with domain $D$ = \{0,1\} and $P(0)$. Additionally, 
+Consider the interpretation $I$ with domain $D$ = \{0,1\} and $P(0)$. Additionally, 
 let $Q$ always be \emph{false}.
 
 \bigskip
@@ -226,6 +226,8 @@ Hence, $\forall x(P(x)) \impl Q \nvDash \forall x(P(x) \impl Q)$.
 \noindent
 Therefore, $\forall x (P(x)) \impl Q$ is \emph{not} equivalent to
 $\forall x(P(x) \impl Q)$.
+
+\item
 \end{enumerate}
 
 
@@ -249,6 +251,50 @@ The \emph{Horn clauses} generated are as follows:
   \item $\{\neg U(x), \neg M(x), \neg D(x), D(y)\}$
   \item $\{\neg S(x), \neg U(x), B(x)\}$
 \end{enumerate}
+
+\bigskip
+\noindent
+Now, we must express statement (f) in first-order predicate logic.
+
+\bigskip
+f.  $\forall x \forall y((U(x) \land M(y,x) \land S(y)) \impl D(x))$
+
+\bigskip
+\noindent
+The negation of (f) in clausal form is: 
+
+$\neg \forall x \forall y((U(x) \land M(y,x) \land S(y)) \impl D(x))$
+
+$\rightsquigarrow \exists x \neg \forall y((U(x) \land M(y,x) \land S(y)) \impl D(x))$
+
+$\rightsquigarrow \exists x \exists y(U(x) \land M(y,x) \land S(y) \land \neg D(x))$
+
+$\rightsquigarrow \exists y(U(a) \land M(y,a) \land S(y) \land \neg D(a))$
+
+$\rightsquigarrow (U(a) \land M(b,a) \land S(b) \land \neg D(a))$
+
+\bigskip
+\noindent
+Which produces \emph{four} clauses: 
+
+$\{U(a)\}, \{M(b,a)\}, \{S(b)\}, \{\neg D(a)\}$
+
+\bigskip
+\noindent
+Now, we can find a refutation of the set of nine clauses.
+
+
+\bigskip
+\noindent
+By the refutation proof shown above, we have proven that the conjunction of
+premise statements (a)-(e) and the negation of conclusion statement (f) is
+unsatisfiable. 
+
+\bigskip
+\noindent
+$\therefore$ (f) is a logical consequence of statements (a)-(e)
+
+
 
 % CHALLENGE 5
 \subsection*{Challenge 5}

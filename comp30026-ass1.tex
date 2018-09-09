@@ -248,7 +248,7 @@ The \emph{Horn clauses} generated are as follows:
   \item $\{\neg M(x,y), F(x)\}$
   \item $\{\neg U(x), \neg M(y,x), U(y)\}$
   \item $\{\neg F(x), \neg U(x), \neg B(x), D(x)\}$
-  \item $\{\neg U(x), \neg M(x), \neg D(x), D(y)\}$
+  \item $\{\neg U(x), \neg M(x,y), \neg D(x), D(y)\}$
   \item $\{\neg S(x), \neg U(x), B(x)\}$
 \end{enumerate}
 
@@ -283,6 +283,10 @@ $\{U(a)\}, \{M(b,a)\}, \{S(b)\}, \{\neg D(a)\}$
 \noindent
 Now, we can find a refutation of the set of nine clauses.
 
+\begin{center}
+\includegraphics[width=6in,height=5in,keepaspectratio]{q4_refutation.jpg}
+\end{center}
+
 
 \bigskip
 \noindent
@@ -300,10 +304,54 @@ $\therefore$ (f) is a logical consequence of statements (a)-(e)
 \subsection*{Challenge 5}
 
 \begin{enumerate}
-  \item (a1) $\forall x \forall y(N(x,y) \impl N(y,x))\\\\$
-        (a2) $\forall x \forall y \exists u((M(u,x) \land \neg M(u,y)) \impl N(x,y))\\\\$
+  \item The statements expressed in first-order predicate logic are as follows:\\\\
+	  (a1) $\forall x \forall y(N(x,y) \impl N(y,x))\\\\$
+        (a2) $\forall x \forall y (\exists u(M(u,x) \land \neg M(u,y)) \impl N(x,y))\\\\$
         (a3) $\forall x(\neg \exists u(M(u,x)) \impl E(x))\\\\$
-        (a4) $\forall x \forall y \forall u((D(x,y) \land M(u,x)) \impl \neg M(u,y))$
+        (a4) $\forall x \forall y \forall u((D(x,y) \land M(u,x)) \impl \neg M(u,y))$\\
+
+  \item The set of clauses produced by statements (a1)-(a4) are as follows:\\
+\\(a1) $\{N(x,y), N(y,x)\}$\\
+\\(a2) $\{\neg M(u,x), M(u,y), N(x,y)\}$\\
+\\(a3) $\{M(f(x), x), E(x)\}$\\
+\\(a4) $\{\neg D(x,y), \neg M(u,x), \neg M(u,y)\}$
+
+  \item Firstly, we must transform the statement into first-order predicate logic. The statement is equivalent to the formula $\forall x \forall y(D(x,y) \impl (N(x,y) \lor (E(x) \land E(y))))$.
+
+\bigskip
+Since we would like to use this formula in a refutation proof as the logical consequence of other statements, we must negate it and then convert its negation to clausal form.
+
+\bigskip
+The negation of the statement in clausal form is: 
+
+$\neg \forall x \forall y(D(x,y) \impl (N(x,y) \lor (E(x) \land E(y))))$
+
+$\rightsquigarrow \exists x \neg \forall y(D(x,y) \impl (N(x,y) \lor (E(x) \land E(y))))$
+
+$\rightsquigarrow \exists x \exists y(\neg (D(x,y) \impl (N(x,y) \lor (E(x) \land E(y)))))$
+
+$\rightsquigarrow \exists x \exists y(\neg (D(x,y) \impl (N(x,y) \lor (E(x) \land E(y)))))$
+
+$\rightsquigarrow \exists x \exists y(D(x,y) \land \neg (N(x,y) \lor (E(x) \land E(y)))))$
+
+$\rightsquigarrow \exists x \exists y(D(x,y) \land ((\neg N(x,y) \land \neg E(x)) \lor (\neg N(x,y) \land \neg E(y))))$
+
+$\rightsquigarrow \exists x \exists y((D(x,y) \land \neg N(x,y) \land \neg E(x)) \lor (D(x,y) \land \neg N(x,y) \land \neg E(y)))$
+
+$\rightsquigarrow \exists x \exists y(D(x,y) \land \neg N(x,y) \land (\neg E(x) \lor \neg E(y)))$
+
+$\rightsquigarrow (D(a,b) \land \neg N(a,b) \land (\neg E(a) \lor \neg E(b)))$
+
+\bigskip
+Hence, the fifth statement produces \emph{three} clauses:
+
+$\{D(a,b)\}, \{\neg N(a,b)\}, \{\neg E(a), \neg E(b)\}$
+
+\bigskip
+\item Refutation Proof:
+
+
+
 \end{enumerate}
 
 
